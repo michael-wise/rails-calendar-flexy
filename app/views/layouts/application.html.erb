@@ -17,7 +17,11 @@
     <div class="container" style="margin:0;">
         
       <div class="sidebar">
-        <%= yield :sideBarDay %>
+        <% if :sideBarDay %>
+          <div class="sideBarCal">
+            <%= yield :sideBarDay %>
+          </div>
+        <% end %>
       </div>
       <%= yield %>
     </div>

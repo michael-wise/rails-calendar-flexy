@@ -39,7 +39,7 @@ class DayStyles
 	end
 
 	def to_s
-		[past, today, future, otherMonth].compact.join(" ")
+		[past, today, future, otherMonth, firstDayOfMonth].compact.join(" ")
 	end
 private
 	def past
@@ -53,6 +53,9 @@ private
 	end
 	def otherMonth
 		"otherMonth" if @date.month != Date.today.month
+	end
+	def firstDayOfMonth
+		"firstDayOfMonth" if @date.strftime('%e').to_i == 1
 	end
 end
 

@@ -1,3 +1,16 @@
 <% content_for :sideBarDay do %>
-<div><%= sideBarDay[0] %></div>
+	
+	<% if (sideBarDay[0].strftime('%e').to_i == 1) or (@countVar==nil)  %>
+		<% @countVar ||= 1 %>
+		<div class="month">
+			<%= sideBarDay[0].strftime('%B %Y') %>
+		</div>
+	<%end%> 
+	
+	<div data-month="<%= sideBarDay[0].strftime('%B') %>" 
+		class="day <%= sideBarDay[1] %>">
+		<span class="left"><%= sideBarDay[0].strftime('%a %d') %></span>
+		<span class="right"></span>
+
+	</div>
 <% end %>
