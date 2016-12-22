@@ -4,7 +4,8 @@ class PageController < ApplicationController
   end
 
   def docalendar
-  	@month = Calendar.new.to_a
+  	@month = Calendar.new.arrayByWeek
+  	@monthByDay = Calendar.new.arrayByDay
   	# @nextMonth = Calendar.new(Date.today.months_since(1)).to_a
   	@firstWeek= [@month[0]]
 

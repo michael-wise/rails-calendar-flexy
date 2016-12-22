@@ -7,7 +7,6 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
   </head>
 
   <body>
@@ -17,7 +16,9 @@
     
     <div class="container" style="margin:0;">
         
-      <div class="sidebar"></div>
+      <div class="sidebar">
+        <%= yield :sideBarDay %>
+      </div>
       <%= yield %>
     </div>
     

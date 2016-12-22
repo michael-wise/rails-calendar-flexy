@@ -17,8 +17,15 @@ class Calendar
 	def initialize(date=Date.today)
 		@date=date
 	end
-	def to_a
-		CalendarWeeks.new(@date).to_a.map do |week|
+
+	def arrayByDay
+		MakeMonth.new(@date).byDays.map do |date|
+			[date, DayStyles.new(date).to_s]
+		end
+	end
+
+	def arrayByWeek
+		MakeMonth.new(@date).byWeeks.map do |week|
 			week.map do |date|
 				[date, DayStyles.new(date).to_s]
 			end
@@ -49,14 +56,18 @@ private
 	end
 end
 
-class CalendarWeeks
+class MakeMonth
  	def initialize(date=Date.today)
  		@date=date
  	end
 
- 	def to_a
- 		(first_calendar_day..last_calendar_day).to_a.in_groups_of(7)
+ 	def byDays
+ 		(first_calendar_day..last_calendar_day).to_a
  	end
+ 	def byWeeks
+ 		byDays.in_groups_of(7)
+ 	end
+
 
 private
 
