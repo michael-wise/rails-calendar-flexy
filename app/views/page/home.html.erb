@@ -3,6 +3,10 @@
 	<% if @showMainCal %>
 		<% content_for :mainCalendar do %>
 			<div id="calendar">
+				<%# #Prints month name (month of--2nd week, 4th day of week) %>
+				<div class="calTitle">
+					<%= @monthByWeek[1][3][0].strftime('%B') %>
+				</div>
 				<%= render partial: 'headers' %>
 				<%= render partial: 'week', collection: @monthByWeek %>
 			</div>

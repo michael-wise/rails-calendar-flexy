@@ -3,6 +3,11 @@
     flex-direction:column;
     height:300px;
 }
+.calTitle {
+    display:flex;
+    margin:auto;
+    font-size:1.5rem;
+}
 .calRow {
     display:flex;
     flex-direction:row;
