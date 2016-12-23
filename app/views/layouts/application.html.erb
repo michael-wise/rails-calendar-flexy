@@ -7,6 +7,11 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <% if content_for?(:head) %>
+      <%= yield(:head) %>
+    <% end %> 
+  
   </head>
 
   <body>
@@ -15,15 +20,20 @@
     <%= yield :navigation %>
     
     <div class="container" style="margin:0;">
-        
-      <div class="sidebar">
+      
+      <aside>
         <% if :sideBarDay %>
           <div class="sideBarCal">
             <%= yield :sideBarDay %>
           </div>
         <% end %>
-      </div>
-      <%= yield %>
+      </aside>
+      <main>
+        <% if :mainCalendar %>
+          <%= yield :mainCalendar %>
+        <% end %>
+        <%= yield %>
+      </main>
     </div>
     
   </body>

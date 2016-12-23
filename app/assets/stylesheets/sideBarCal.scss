@@ -1,0 +1,28 @@
+// Place all the styles related to the page controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.sideBarCal {
+	display:flex;
+	flex-direction:column;
+	font-style:italic;
+  	font-weight:400;
+  	font-size:1.2rem;
+}
+.sideBarCal>div {
+	color:rgba(255,255,255,.9);
+	border: thin solid rgba(0,0,0,.2);
+	background: #31809F;
+
+}
+.sideBarCal>.month {
+	font-size:1.5rem;
+	text-align:center;
+	padding:0.5em;
+}
+.sideBarCal>.day {
+	padding-left:.5em;
+	height:3em;
+}
+.sideBarCal>.day>.dayContent {
+	margin-right:4em;
+}

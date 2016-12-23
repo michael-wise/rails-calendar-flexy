@@ -1,0 +1,21 @@
+#calendar {
+    display:flex;
+    flex-direction:column;
+    height:300px;
+}
+.calRow {
+    display:flex;
+    flex-direction:row;
+}
+.week {
+    flex:1 0 auto;
+}
+.calCol {
+    display:flex;
+    flex:1 0 0; //grow shrink basis. Basis=0 ignores the items content when calculating size (allowing congruous grid).
+    border: thin solid black;
+
+}
+.day::after {
+    content: attr(data-date);
+}

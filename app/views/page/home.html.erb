@@ -1,8 +1,14 @@
 
-<div id="calendar">
-	 
-<%= render partial: 'sideBarDay', collection: @monthByDay %>
-	<!-- @firstWeek -->
-</main>
+
+	<% if @showMainCal %>
+		<% content_for :mainCalendar do %>
+			<div id="calendar">
+				<%= render partial: 'headers' %>
+				<%= render partial: 'week', collection: @monthByWeek %>
+			</div>
+		<% end %>
+	<% end %>
+	
+	<%= render partial: 'sideBarDay', collection: @monthByDay %>
 
  

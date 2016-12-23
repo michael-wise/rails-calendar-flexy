@@ -21,47 +21,30 @@ $secondary-color: color("yellow", "base") !default;
 @import "materialize";
 // http://www.colorcombos.com/color-schemes/226/ColorCombo226.html
 
-html,
-body {
+html,body {
   height: 100%;
   padding: 0;
   margin: 0;
   font-family:Roboto;
-
+  font-size:10px;
+}
+main {
+  display:flex;
+  flex-direction:column;
+  width:100%;
+  padding:10px;
 }
 
 .container {
   height: 100%;
   width:100%;
-  display: -ms-flexbox;
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-box;
-  display: box;
-  
-  -ms-flex-direction: row;
-  -webkit-box-orient: horizontal;
-  -moz-box-orient: horizontal;
-  -ms-box-orient: horizontal;
-  box-orient: horizontal;
+  display:flex;
+  flex-direction:row;
 }
 
-.sidebar {
-  width: 200px;
-  height:100%;
--ms-flex: 0 200px;
--webkit-box-flex:  0;
--moz-box-flex:  0;
--ms-box-flex:  0;
-box-flex:  0;  
-}
-
-
-.main {
-  background: aliceblue;
- -ms-flex: 1;
- -webkit-box-flex: 1;
- -moz-box-flex: 1;
- -ms-box-flex: 1;
- box-flex: 1;  
+aside {
+  display:flex;
+  flex-direction:column;
+  width: 250px;
+  // height:100%;
 }
