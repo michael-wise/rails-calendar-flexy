@@ -41,6 +41,30 @@ The `_day.html.erb` partial creates divs
 `<div data-date="<%= day[0].strftime('%d') %>" class="day calCol <%= day[1] %>"></div>`.
 
 containing the css classes generated in `calendar.rb` and data attributes i.e. `data-date=14` to later be hooked into or displayed using css `content: attr(data-data)` (in `app/assets/stylesheets/mainCalendar.scss`).
+#### views/page/_sideBarDay.html.erb
+`_sideBarDay.html.erb` is a partial that is unconditionally rendered from `home.html.erb` and iterates over the `collection: @monthByDay`.
+#### views/page/_sideBarDay.html.erb
+Inserts a div designating the month name if the appropriate month name has not yet been predicated. The first case is trivial and happens for the first day of any month `(sideBarDay[0].strftime('%e').to_i == 1)`. The second case `(@countVar==nil)` titles the last several days of the last month, which almost always occur on a calendar page (that is, Sunday Nov 27th 2016 is shown for the month of December 2016).
+```
+<% content_for :sideBarDay do %>
+	
+	<% if (sideBarDay[0].strftime('%e').to_i == 1) or (@countVar==nil)  %>
+		<% @countVar ||= 1 %>
+		<div class="month">
+			<%= sideBarDay[0].strftime('%B %Y') %>
+		</div>
+	<%end%> 
+	
+	<div data-month="<%= sideBarDay[0].strftime('%B') %>" 
+		class="day <%= sideBarDay[1] %>">
+		<span class="left"><%= sideBarDay[0].strftime('%a %d') %></span>
+		<span class="dayContent right">
+			<%= "-static content-" %>
+		</span>
+
+	</div>
+<% end %>
+```
 
 
 * ...
