@@ -31,5 +31,16 @@ Uses a partial to render the nav `views/page/_nav.html.erb` and yields it `yield
   Yields `yield :sideBarDay`.
   And conditionally  yields `yield :mainCalendar`.
 
+#### views/page/home.html.erb
+Checks if @showMainCal is true or false, conditionally creating `content_for :mainCalendar`. The section would be titled with `<%= @monthByWeek[1][3][0].strftime('%B') %>` which displays the name of the current month (according to the 4th day of the 2nd week). It renders the partials `views/page/_headers.htmlerb` and `views/page/_week`, the latter of which is rendered 5 times due to `<%= render partial: 'week', collection: @monthByWeek %>`
+#### views/page/_week.html.erb
+The `_week.html.erb` partial is in-turn rendered 7 times `<%= render partial: "day", collection: week %>`.
+#### views/page/_day.html.erb
+The `_day.html.erb` partial creates divs
+
+`<div data-date="<%= day[0].strftime('%d') %>" class="day calCol <%= day[1] %>"></div>`.
+
+containing the css classes generated in `calendar.rb` and data attributes i.e. `data-date=14` to later be hooked into or displayed using css `content: attr(data-data)` (in `app/assets/stylesheets/mainCalendar.scss`).
+
 
 * ...
