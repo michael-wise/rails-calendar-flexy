@@ -33,19 +33,36 @@ Uses a partial to render the nav `views/page/_nav.html.erb` and yields it `yield
 
 #### views/page/home.html.erb
 Checks if @showMainCal is true or false, conditionally creating `content_for :mainCalendar`. The section would be titled with `<%= @monthByWeek[1][3][0].strftime('%B') %>` which displays the name of the current month (according to the 4th day of the 2nd week). It renders the partials `views/page/_headers.htmlerb` and `views/page/_week`, the latter of which is rendered 5 times due to `<%= render partial: 'week', collection: @monthByWeek %>`
-#### views/page/_week.html.erb
-The `_week.html.erb` partial is in-turn rendered 7 times `<%= render partial: "day", collection: week %>`.
-#### views/page/_day.html.erb
-The `_day.html.erb` partial creates divs
-
-`<div data-date="<%= day[0].strftime('%d') %>" class="day calCol <%= day[1] %>"></div>`.
-
-containing the css classes generated in `calendar.rb` and data attributes i.e. `data-date=14` to later be hooked into or displayed using css `content: attr(data-data)` (in `app/assets/stylesheets/mainCalendar.scss`).
-#### views/page/_sideBarDay.html.erb
-`_sideBarDay.html.erb` is a partial that is unconditionally rendered from `home.html.erb` and iterates over the `collection: @monthByDay`.
-#### views/page/_sideBarDay.html.erb
-Inserts a div designating the month name if the appropriate month name has not yet been predicated. The first case is trivial and happens for the first day of any month `(sideBarDay[0].strftime('%e').to_i == 1)`. The second case `(@countVar==nil)` titles the last several days of the last month, which almost always occur on a calendar page (that is, Sunday Nov 27th 2016 is shown for the month of December 2016).
+#### views/page/headers.html.erb
+```Ruby
+#_headers.html.erb
+<div class="calRow">
+	<div class="calCol">Sunday</div>
+	<div class="calCol">Monday</div>
+	<div class="calCol">Tuesday</div>
+	<div class="calCol">Wednesday</div>
+	<div class="calCol">Thursday</div>
+	<div class="calCol">Friday</div>
+	<div class="calCol">Saturday</div>
+</div>
 ```
+#### views/page/_week.html.erb
+```Ruby
+#_week.html.erb
+<div class="week calRow">
+	<%= render partial: "day", collection: week %>
+</div>
+```
+The `_week.html.erb` partial is in-turn rendered 7 times `<%= render partial: "day", collection: week %>`
+#### views/page/_day.html.erb
+```Ruby
+<div data-date="<%= day[0].strftime('%d') %>" class="day calCol <%= day[1] %>">
+</div>
+```
+The `_day.html.erb` partial creates divs containing the css classes generated in `calendar.rb` and data attributes i.e. `data-date=14` to later be hooked into or displayed using css `content: attr(data-data)` (in `app/assets/stylesheets/mainCalendar.scss`).
+#### views/page/_sideBarDay.html.erb
+`_sideBarDay.html.erb` is a partial that is unconditionally rendered from `home.html.erb` and iterates over the `collection: @monthByDay`. It inserts a div designating the month name if the appropriate month name has not yet been predicated. The first case is trivial and happens for the first day of any month `(sideBarDay[0].strftime('%e').to_i == 1)`. The second case `(@countVar==nil)` titles the last several days of the last month, which almost always occur on a calendar page (that is, Sunday Nov 27th 2016 is shown for the month of December 2016).
+```Ruby
 <% content_for :sideBarDay do %>
 	
 	<% if (sideBarDay[0].strftime('%e').to_i == 1) or (@countVar==nil)  %>
