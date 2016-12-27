@@ -1,5 +1,5 @@
 # README
-This rails application uses showcases a Ruby Calendar class with several methods, and a view which shows the calendar in the sidebar as a list, or in the main section in the typical calendar month layout. 
+This rails application uses a Ruby Calendar class with several methods, and a view which shows the calendar in the sidebar as a list, or conditionally, in the main section in the typical calendar month layout. 
 
 ## The interesting parts
 #### lib/assets/calendar.rb
